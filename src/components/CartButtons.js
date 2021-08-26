@@ -5,9 +5,21 @@ import styled from 'styled-components';
 
 const CartButtons = () => {
     return(
-        <div>
-            <h4> Cart Buttons</h4>
-        </div>
+      //className here is for a use case for a global case and in the navbar
+        <Wrapper className = "cart-btn-wrapper">
+            <Link to = "/cart" className = "cart-btn">
+              Cart
+              <span className = "cart-container">
+                <FaShoppingCart/>
+                <span className = "cart-value">
+                  13
+                </span>
+              </span>
+            </Link>
+            <button type = "button" className= "auth-btn">
+              Login <FaUserPlus/>
+            </button>
+        </Wrapper>
     )
 }
 
