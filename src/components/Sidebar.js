@@ -5,9 +5,12 @@ import { FaTimes } from 'react-icons/fa';
 import logo from '../assets/Potato-Mochi-Plush.jpg'
 import { links } from '../utils/constants';
 import CartButtons from './CartButtons';
+import { useProductsContext } from '../context/products_context';
 
 
 function Sidebar () {
+  const dataContextAndReducer = useProductsContext();
+  console.log(dataContextAndReducer)
     const isOpen = true;
     return (
         <SidebarContainer>

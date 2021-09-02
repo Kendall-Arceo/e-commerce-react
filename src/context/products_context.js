@@ -14,30 +14,69 @@ import {
 } from '../actions'
 
 const initialState = {
-    isSidebarOpen: false,
-  products_loading: false,
-  products_error: false,
-  products: [],
-  featured_products: [],
-  single_product_loading: false,
-  single_product_error: false,
-  single_product: {},
+  isSidebarOpen: false,
+//   products_loading: false,
+//   products_error: false,
+//   products: [],
+//   featured_products: [],
+//   single_product_loading: false,
+//   single_product_error: false,
+//   single_product: {},
 }
 
 const ProductsContext = React.createContext()
 
 export const ProductsProvider = ({ children }) => {
-    //update the state if there is an action only
-    const [state,dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState)
 
-    return (
-        <ProductsContext.Provider value="products context" 
-        value ={{...state,openSidebar,closeSidebar, fetchSingleProduct}}>
-            {children}
-        </ProductsContext.Provider>
-    )
+  const openSidebar = () => {
+    dispatch({ type: SIDEBAR_OPEN })
+  }
+
+  const closeSidebar = () => {
+    dispatch({ type: SIDEBAR_CLOSE })
+  }
+//   const closeSidebar = () => {
+//     dispatch({ type: SIDEBAR_CLOSE })
+//   }
+
+//   const fetchProducts = async (url) => {
+//     dispatch({ type: GET_PRODUCTS_BEGIN })
+//     try {
+//       const response = await axios.get(url)
+//       const products = response.data
+//       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products })
+//     } catch (error) {
+//       dispatch({ type: GET_PRODUCTS_ERROR })
+//     }
+//   }
+
+//   const fetchSingleProduct = async (url) => {
+//     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN })
+//     try {
+//       const response = await axios.get(url)
+//       const singleProduct = response.data
+//       dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct })
+//     } catch (error) {
+//       dispatch({ type: GET_SINGLE_PRODUCT_ERROR })
+//     }
+//   }
+
+//   useEffect(() => {
+//       openSidebar()
+    
+//   }, [])
+
+  return (
+    <ProductsContext.Provider
+      value={{ ...state, openSidebar, closeSidebar}}
+
+    >
+      {children}
+    </ProductsContext.Provider>
+  )
 }
-
+// make sure use
 export const useProductsContext = () => {
-    return useContext(ProductsContext)
+  return useContext(ProductsContext)
 }
